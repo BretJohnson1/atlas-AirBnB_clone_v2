@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 
 class State(BaseModel, Base):
     """ State class """
-    if models.storage_t == 'db':
+    if models.HBNB_TYPE_STORAGE == 'db':
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
         cities = relationship(
@@ -24,7 +24,7 @@ class State(BaseModel, Base):
         def cities(self):
             """ getter for cities"""
             from models import storage
-            if models.storage_t != "db":
+            if models.HBNB_TYPE_STORAGE != "db":
                 city_list = []
             all_cities = storage.all(City)
             for city in all_cities.values():
